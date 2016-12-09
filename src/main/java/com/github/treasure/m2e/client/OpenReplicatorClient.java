@@ -3,6 +3,7 @@ package com.github.treasure.m2e.client;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.github.treasure.m2e.service.DBConfig;
 import com.github.treasure.m2e.service.LogPosition;
 import com.github.treasure.m2e.service.NotificationListener;
 import com.google.code.or.OpenReplicator;
@@ -18,12 +19,12 @@ public class OpenReplicatorClient {
 	ApplicationContext ac = new ClassPathXmlApplicationContext("spring.xml");
 	NotificationListener lister = (NotificationListener) ac.getBean(NotificationListener.class);
 	LogPosition ps = (LogPosition) ac.getBean(LogPosition.class);
-	// LevlDBPosition ps= (LevlDBPosition) ac.getBean(LevlDBPosition.class);
+	DBConfig config= (DBConfig) ac.getBean(DBConfig.class);
 	OpenReplicator or = new OpenReplicator();
-	or.setUser("root");
-	or.setPassword("123456");
-	or.setHost("10.1.34.201");
-	or.setPort(3306);
+	or.setUser(config.getUserName());
+	or.setPassword(config.getPasswd());
+	or.setHost(config.getHost());
+	or.setPort(config.getPort());
 	// or.setServerId(17725);
 	String re = ps.readPosition().trim();
 	String names[] = re.split(",");
