@@ -33,6 +33,10 @@ public class OpenReplicatorClient {
 
 	or.setBinlogEventListener(lister);
 	or.start();
+	      //批量操作时的处理
+//     	EsOperator operator = (EsOperator) ac.getBean(EsOperator.class);
+//	ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+//	executor.scheduleAtFixedRate(operator, 2, 5, TimeUnit.SECONDS);
     }
 
 }

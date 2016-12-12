@@ -1,5 +1,7 @@
 package com.github.treasure.m2e.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,8 @@ public class EsService {
     private ESOrderService orderService;
     @Autowired
     private ESOrderDetailService detailService;
+    @Autowired
+    private CacheService cacheService;
 
     public void serviceSave(String type, Object object) {
 	System.out.println("esService:"+type+"     "+object);
@@ -51,5 +55,11 @@ public class EsService {
 	}
     }
     
+    /**
+     * 批量操作 ,商品
+     */
+    public void bulkProduct(ArrayList<ProductEntity> object) {
+	productService.save(object);
+    }
     
 }
