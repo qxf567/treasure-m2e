@@ -61,5 +61,16 @@ public class EsService {
     public void bulkProduct(ArrayList<ProductEntity> object) {
 	productService.save(object);
     }
+    public void bulkTerm(ArrayList<TreasureTermEntity> object) {
+	termService.save(object);
+    }
+//    public void bulkOrders(ArrayList<ESOrdersEntity> object) {
+//	orderService.save(object);
+//    }
+//    public void bulkDetail(ArrayList<ESOrdersDetailEntity> object) {
+//	detailService.save(object);
+//    }
+    
+    
     
 }

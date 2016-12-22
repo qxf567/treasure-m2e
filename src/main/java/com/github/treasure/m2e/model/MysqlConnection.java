@@ -13,6 +13,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mysql.jdbc.PreparedStatement;
+
 
 
 public class MysqlConnection {
@@ -81,4 +83,30 @@ public class MysqlConnection {
         }  
         return cols;  
     }  
+    
+    /**返回当前show master logs位置 */
+    public static String getLogPos(){  
+        Connection conn = getConnection(); 
+        String r = null;
+        try {  
+            
+            String str1 = "show master logs";
+            PreparedStatement localPreparedStatement = (PreparedStatement) conn.prepareStatement(str1);
+            ResultSet rset = localPreparedStatement.executeQuery();
+            
+            String logName = null; 
+            Long pos = null;
+            while(rset.next()) { 
+        	logName=rset.getString("Log_name");
+        	pos= rset.getLong("File_size");
+            } 
+            r= logName+","+pos;  
+  
+        } catch (SQLException e) {  
+            logger.error(e.getMessage(), e);  
+            return null;  
+        }  
+        return r;
+    }  
+    
 }
