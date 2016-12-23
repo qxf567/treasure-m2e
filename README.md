@@ -26,6 +26,6 @@ expire_logs_days = 7 //binlog过期清理时间
 max_binlog_size 100m //binlog每个日志文件大小 
 
 
-
+--http://blog.csdn.net/xtayfjpk/article/details/47005219
 
 ./plugin --install m2e --url file:///usr/local/elasticsearch-1.7.3/bin/m2e.jar
