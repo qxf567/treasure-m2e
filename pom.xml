@@ -28,6 +28,8 @@
 			<groupId>open-replicator</groupId>
 			<artifactId>open-replicator</artifactId>
 			<version>1.0.7</version>
+			<scope>system</scope>
+			<systemPath>C:/Users/Administrator/Documents/open-replicator/target/open-replicator-1.0.7.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.lashou.treasure</groupId>
