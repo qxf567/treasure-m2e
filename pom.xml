@@ -41,7 +41,6 @@
 			<artifactId>treasure-es</artifactId>
 			<version>1.0.5-SNAPSHOT</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -61,9 +60,13 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			 <version>4.3.4.RELEASE</version>
+			<version>4.3.4.RELEASE</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>2.4.3</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>m2e</finalName>
