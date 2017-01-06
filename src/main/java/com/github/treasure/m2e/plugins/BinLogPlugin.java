@@ -1,11 +1,9 @@
 package com.github.treasure.m2e.plugins;
 
 import java.io.Closeable;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.elasticsearch.common.component.LifecycleComponent;
 import org.elasticsearch.common.inject.AbstractModule;
 import org.elasticsearch.common.inject.Module;
 import org.elasticsearch.common.inject.multibindings.Multibinder;
@@ -22,16 +20,16 @@ public class BinLogPlugin extends Plugin {
     }
 
     public String name() {
-	return "jvm-example";
+	return "binlog";
     }
 
     public String description() {
 	return "A plugin that extends all extension points";
     }
 
-    public Collection<Class<? extends LifecycleComponent>> nodeServices() {
-	Collection<Class<? extends LifecycleComponent>> services = new ArrayList();
-	return services;
+    @Override
+    public Collection<Module> nodeModules() {
+	return Collections.<Module> singletonList(new ConfiguredExampleModule());
     }
 
     public Collection<Module> indexModules(Settings indexSettings) {
@@ -59,7 +57,7 @@ public class BinLogPlugin extends Plugin {
 
     public static class ConfiguredExampleModule extends AbstractModule {
 	protected void configure() {
-	    // bind(ExamplePluginConfiguration.class).asEagerSingleton();
+	    bind(ExamplePluginConfiguration.class).asEagerSingleton();
 	    Multibinder<AbstractCatAction> catActionMultibinder = Multibinder.newSetBinder(binder(), AbstractCatAction.class);
 	    catActionMultibinder.addBinding().to(BinLogAction.class).asEagerSingleton();
 	}
