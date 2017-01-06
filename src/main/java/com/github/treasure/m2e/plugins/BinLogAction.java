@@ -31,19 +31,20 @@ public class BinLogAction extends AbstractCatAction {
     public BinLogAction(Settings settings, RestController controller, Client client) {
 	super(settings, controller, client);
 	if (this.count.get()) {
-	    controller.registerHandler(RestRequest.Method.GET, "/_set/binglog", this);
+	    LOGGER.info("enter...BinLogAction..........");
+	    controller.registerHandler(RestRequest.Method.GET, "/_cat/binlog", this);
 	    this.count.set(false);
 	    ac = new ClassPathXmlApplicationContext("spring.xml");
 	} else {
-	    System.out.println("count is > 0");
+	    LOGGER.info("count is > 0");
 	}
     }
 
+    @Override
     protected void doRequest(RestRequest request, RestChannel channel, Client client) {
 	RestResponse response = new BytesRestResponse(RestStatus.OK, "SUCCESS");
 	channel.sendResponse(response);
 	try {
-
 	    NotificationListener lister = (NotificationListener) ac.getBean(NotificationListener.class);
 	    LogPosition ps = (LogPosition) ac.getBean(LogPosition.class);
 	    DBConfig config = (DBConfig) ac.getBean(DBConfig.class);
@@ -80,7 +81,7 @@ public class BinLogAction extends AbstractCatAction {
     }
 
     public static String documentation() {
-	return "/_set/binglog";
+	return "/_cat/binlog";
     }
 
     protected Table getTableWithHeader(RestRequest request) {
